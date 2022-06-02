@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+      <meta charset="ISO-8859-1">
+      <link rel="stylesheet" type="text/css" href="/css/home.css">
+      <title>My Employees</title>
+   </head>
+   <body>   
+      <th:block th:replace="~{header}"></th:block>
+      <h1>Employees</h1>
+      <h5>Workplace ID : <a class="workplaceId" th:inline="text" th:text="${workplaceId}"></a></h5>
+      <h6>Only managers can access this page.</h6>
+      <hr>
+      <table class="table">
+         <thead>
+            <tr>
+               <th>Workplace ID</th>
+               <th>Position</th>
+               <th>Job Title</th>
+               <th>Name</th>
+               <th>Email</th>
+               <th>Phone</th>
+               <th>Salary ( $/hr )</th>
+               <th>Total Hours</th>
+               <th>Current Wage ($)</th>
+               <th></th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr th:each="employee:${employees}">
+               <td th:text="${employee.workplaceId}"/>
+               <td th:text="${employee.position}"/>
+               <td th:text="${employee.jobTitle}"/>
+               <td th:text="${employee.name}"/>
+               <td th:text="${employee.email}"/>
+               <td th:text="${employee.phone}"/>
+               <td th:text="'$ ' + ${employee.salary}">                                    
+               <td th:text="${employee.totalHour} + ' hr(s)'"/>      
+               <td th:text="'$ ' + ${employee.currentWage}"/>
+               <td>
+                  <form action="#" th:action="@{/manager/employee/update/{id}(id=${employee.userId})}" method="GET">
+                     <input type="submit" class="btn btn-warning" value="Update"/>
+                  </form>
+               </td>
+            </tr>
+         </tbody>
+      </table>
+   </body>
+</html>
