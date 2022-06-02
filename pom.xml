@@ -8,17 +8,6 @@
 		<version>2.6.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<plugin>
-	<inherited>true</inherited>
-	<groupId>org.apache.maven.plugins</groupId>
-	<artifactId>maven-war-plugin</artifactId>
-	<version>${maven-war-plugin.version}</version>
-	<configuration>
-	<failOnMissingWebXml>false</failOnMissingWebXml>
-	<warName>${project.artifactId}</warName>
-	<attachClasses>true</attachClasses>
-	</configuration>
-	</plugin> 
 	<groupId>com.example</groupId>
 	<artifactId>WorkingTimeStamp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
@@ -144,6 +133,8 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+				<failOnMissingWebXml>false</failOnMissingWebXml>
 			</plugin>
 		</plugins>
 	</build>
